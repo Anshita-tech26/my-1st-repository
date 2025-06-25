@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Alert</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #000000;
+            color: #9d00ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-shadow: 0 0 5px rgba(157, 0, 255, 0.7);
+            background-image: radial-gradient(circle, rgba(78, 0, 153, 0.3) 15%, transparent 60%),
+                              repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(102, 0, 204, 0.1) 2px, rgba(102, 0, 204, 0.1) 4px);
+            background-size: cover, 50px 50px;
+        }
+        .system-window {
+            width: 80%;
+            max-width: 650px;
+            padding: 2em;
+            border: 2px solid #9d00ff;
+            box-shadow: 0 0 15px #9d00ff, inset 0 0 10px rgba(157, 0, 255, 0.5);
+            background-color: rgba(0, 0, 0, 0.8);
+            text-align: left;
+            display: block;
+        }
+        p { margin: 0.8em 0; line-height: 1.6; }
+        .system-message { color: #e0b3ff; font-weight: bold; }
+        .button-container { margin-top: 2em; }
+        .system-button {
+            background: none; border: none; color: #e0b3ff;
+            font-family: 'Courier New', Courier, monospace; font-size: 1.1em;
+            padding: 10px; display: block; width: 100%; text-align: left;
+        }
+        #accept-btn { cursor: pointer; transition: all 0.2s ease-in-out; }
+        #accept-btn:hover { background-color: rgba(157, 0, 255, 0.2); color: #ffffff; text-shadow: 0 0 8px #ffffff; }
+        #decline-btn { color: #5a5a5a; cursor: not-allowed; text-decoration: line-through; }
+        #media-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            z-index: 1000;
+            color: #ffffff;
+            font-size: 2em;
+            text-align: center;
+        }
+        #image-display {
+            margin-top: 20px;
+            max-width: 90%;
+            max-height: 80vh;
+            border: 2px solid #9d00ff;
+            box-shadow: 0 0 15px #9d00ff;
+        }
+    </style>
+</head>
+<body>
+    <div class="system-window" id="initial-screen">
+        <p class="system-message">[Consent confirmed. Welcome, Player.]</p>
+        <p class="system-message">[Issuing your first quest...]</p>
+        <p class="system-message">► Urgent Quest: A duo-class Gate has appeared!</p>
+        <p>► Objective: Rendezvous with the System Administrator (me your pretty wifey) and conquer this Gate together.</p>
+        <div class="button-container">
+            <button class="system-button" id="accept-btn">► [Accept]</button>
+            <button class="system-button" id="decline-btn" disabled>► [Decline]</button>
+        </div>
+    </div>
+
+    <div id="media-overlay">
+        <div>Yayyy you accepted! I love you sooo much!!!</div>
+        <img id="image-display" src="screenshot.png" alt="My Screenshot">
+    </div>
+
+    <script>
+        const acceptButton = document.getElementById('accept-btn');
+        const initialScreen = document.getElementById('initial-screen');
+        const mediaOverlay = document.getElementById('media-overlay');
+
+        acceptButton.addEventListener('click', function() {
+            initialScreen.style.display = 'none';
+            mediaOverlay.style.display = 'flex';
+            
+            // This timer will hide the image after 15 seconds
+            setTimeout(function() {
+                mediaOverlay.style.display = 'none';
+                initialScreen.style.display = 'block';
+            }, 15000); // 15000 milliseconds = 15 seconds
+        });
+    </script>
+</body>
+</html>
