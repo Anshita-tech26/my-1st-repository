@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Alert</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #000000;
+            color: #9d00ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-shadow: 0 0 5px rgba(157, 0, 255, 0.7);
+            background-image: radial-gradient(circle, rgba(78, 0, 153, 0.3) 15%, transparent 60%),
+                              repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(102, 0, 204, 0.1) 2px, rgba(102, 0, 204, 0.1) 4px);
+            background-size: cover, 50px 50px;
+        }
+        .system-window {
+            width: 80%;
+            max-width: 650px;
+            padding: 2em;
+            border: 2px solid #9d00ff;
+            box-shadow: 0 0 15px #9d00ff, inset 0 0 10px rgba(157, 0, 255, 0.5);
+            background-color: rgba(0, 0, 0, 0.8);
+            text-align: left;
+        }
+        p { margin: 0.8em 0; line-height: 1.6; }
+        .system-message { color: #e0b3ff; font-weight: bold; }
+        .warning { color: #ff4d4d; font-style: italic; text-shadow: 0 0 5px #ff4d4d; }
+        .button-container { margin-top: 2em; }
+        .system-button {
+            background: none; border: none; color: #e0b3ff;
+            font-family: 'Courier New', Courier, monospace; font-size: 1.1em;
+            padding: 10px; display: block; width: 100%; text-align: left;
+        }
+        #accept-btn { cursor: pointer; transition: all 0.2s ease-in-out; }
+        #accept-btn:hover { background-color: rgba(157, 0, 255, 0.2); color: #ffffff; text-shadow: 0 0 8px #ffffff; }
+        #decline-btn { color: #5a5a5a; cursor: not-allowed; text-decoration: line-through; }
+        #accepted-screen {
+            display: none; color: #e0b3ff; text-shadow: 0 0 5px #e0b3ff;
+            font-size: 1.2em; text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="system-window">
+        <div id="initial-screen">
+            <p class="system-message">[System is booting...]</p>
+            <p class="system-message">[Welcome.]</p>
+            <p>You have shown great potential and have met all the necessary requirements.</p>
+            <p>A unique opportunity is being presented to you.</p>
+            <p class="system-message">[System Alert]</p>
+            <p>Do you accept the offer to become a 'Player' in the System?</p>
+            <p class="warning">(Warning: Your decision is irreversible.)</p>
+            <div class="button-container">
+                <button class="system-button" id="accept-btn">► [Accept]</button>
+                <button class="system-button" id="decline-btn" disabled>► [Decline]</button>
+            </div>
+        </div>
+        <div id="accepted-screen">
+            <p>Player now open the page 23 of your forensic file and scan the qr code</p>
+        </div>
+    </div>
+    <script>
+        const acceptButton = document.getElementById('accept-btn');
+        const initialScreen = document.getElementById('initial-screen');
+        const acceptedScreen = document.getElementById('accepted-screen');
+        acceptButton.addEventListener('click', function() {
+            initialScreen.style.display = 'none';
+            acceptedScreen.style.display = 'block';
+        });
+    </script>
+</body>
+</html>
